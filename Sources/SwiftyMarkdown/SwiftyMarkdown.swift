@@ -97,6 +97,7 @@ enum MarkdownLineStyle : LineStyling {
 	var fontName : String? { get set }
 	var color : UIColor { get set }
 	var fontSize : CGFloat { get set }
+    var fixedSize : Bool { get set }
 	var fontStyle : FontStyle { get set }
 }
 #endif
@@ -123,6 +124,7 @@ If that is not set, then the system default will be used.
 	#endif
 	public var fontSize : CGFloat = 0.0
 	public var fontStyle : FontStyle = .normal
+    public var fixedSize: Bool = false
 }
 
 @objc open class LineStyles : NSObject, FontProperties, LineProperties {
@@ -134,6 +136,7 @@ If that is not set, then the system default will be used.
 	#endif
 	public var fontSize : CGFloat = 0.0
 	public var fontStyle : FontStyle = .normal
+    public var fixedSize: Bool = false
 	public var alignment: NSTextAlignment = .left
     public var lineSpacing : CGFloat = 0.0
     public var paragraphSpacing : CGFloat = 0.0
@@ -332,6 +335,27 @@ If that is not set, then the system default will be used.
 		link.fontSize = size
 		strikethrough.fontSize = size
 	}
+    
+    /**
+    Set use fixed sized for all styles
+    
+    - parameter useFixedSize: should font use fixed size
+    */
+    open func setFontFixedSizeForAllStyles(with useFixedSize: Bool) {
+        h1.fixedSize = useFixedSize
+        h2.fixedSize = useFixedSize
+        h3.fixedSize = useFixedSize
+        h4.fixedSize = useFixedSize
+        h5.fixedSize = useFixedSize
+        h6.fixedSize = useFixedSize
+        body.fixedSize = useFixedSize
+        italic.fixedSize = useFixedSize
+        bold.fixedSize = useFixedSize
+        code.fixedSize = useFixedSize
+        link.fixedSize = useFixedSize
+        link.fixedSize = useFixedSize
+        strikethrough.fixedSize = useFixedSize
+    }
 	
 	#if os(macOS)
 	open func setFontColorForAllStyles(with color: NSColor) {
